@@ -84,7 +84,7 @@ MAINTAINER Dave Conroy <daveconroy@selfdesign.org>
        apt-get ${APT_FLAGS_COMMON} autoremove && \
        apt-get ${APT_FLAGS_COMMON} clean && \
        echo "America/Vancouver" > /etc/timezone && \
-       dpkg-reconfigure -f noninteractive tzdata
+       dpkg-reconfigure -f noninteractive tzdata && \
        rm -rf /var/lib/apt/lists/* && \
        mkdir -p /assets/cron
 

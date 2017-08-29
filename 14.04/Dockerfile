@@ -101,7 +101,7 @@ MAINTAINER Dave Conroy <daveconroy@selfdesign.org>
    ADD /install /
 
 ### Networking Configuration
-   EXPOSE 10050/TCP
+   EXPOSE 1025 8025 10050/TCP
    
 ### Entrypoint Configuration
    CMD ["bash"]

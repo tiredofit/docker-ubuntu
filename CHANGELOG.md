@@ -1,3 +1,7 @@
+## 2.3 2017-08-29 <dave at tiredofit dot ca>
+
+* Used Official Zabbix Agent 3.4 instead of compiling from Trunk
+
 ## 2.2 2017-08-27 <dave at tiredofit dot ca>
 
 * Added MSMTP to be able to route mail to external hosts

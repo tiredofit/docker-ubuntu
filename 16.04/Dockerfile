@@ -2,78 +2,14 @@ FROM ubuntu:xenial
 MAINTAINER Dave Conroy <dave at tiredofit dot ca>
 
 ### Install Zabbix
-  ARG APT_FLAGS_COMMON="-y"
-  ARG APT_FLAGS_PERSISTANT="${APT_FLAGS_COMMON} --no-install-recommends"
-  ARG APT_FLAGS_DEV="${APT_FLAGS_COMMON} --no-install-recommends"
-  ENV DEBIAN_FRONTEND=noninteractive TERM=xterm
-  ENV ZABBIX_HOSTNAME=ubuntu.xenial
-  ARG MAJOR_VERSION=3.4
-  ARG ZBX_VERSION=${MAJOR_VERSION}
   ARG S6_OVERLAY_VERSION=v1.19.1.1 
-
-  RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
-      addgroup --system --quiet zabbix && \
-      adduser --quiet \
-              --system --disabled-login \
-              --ingroup zabbix \
-              --home /var/lib/zabbix/ \
-          zabbix && \
-      mkdir -p /etc/zabbix && \
-      mkdir -p /etc/zabbix/zabbix_agentd.d.conf && \
-      mkdir -p /var/log/zabbix && \
-      mkdir -p /var/lib/zabbix && \
-      mkdir -p /var/lib/zabbix/enc && \
-      mkdir -p /var/lib/zabbix/modules && \
-      chown --quiet -R zabbix:root /var/lib/zabbix && \
-      apt-get ${APT_FLAGS_COMMON} update && \
-      apt-get ${APT_FLAGS_PERSISTANT} install \
-              libssl1.0.0 1>/dev/null && \
-      apt-get ${APT_FLAGS_DEV} install \
-              gcc \
-              make \
-              automake \
-              libc6-dev \
-              pkg-config \
-              libssl-dev \
-              ca-certificates \
-              git && \
-
-       cd /tmp/ && \
-       git clone --verbose --progress https://github.com/zabbix/zabbix/ && \
-       cd zabbix && \
-       git fetch origin && \
-       git checkout trunk && \
-       sed -i "s/{ZABBIX_REVISION}/trunk/g" include/version.h && \
-       ./bootstrap.sh 1>/dev/null && \
-       ./configure \
-               --prefix=/usr \
-               --silent \
-               --sysconfdir=/etc/zabbix \
-               --libdir=/usr/lib/zabbix \
-               --datadir=/usr/lib \
-               --enable-agent \
-               --enable-ipv6 \
-               --enable-static && \
-       make -j"$(nproc)" -s 1>/dev/null && \
-       cp src/zabbix_agent/zabbix_agentd /usr/sbin/zabbix_agentd && \
-       cp src/zabbix_sender/zabbix_sender /usr/sbin/zabbix_sender && \
-       cp conf/zabbix_agentd.conf /etc/zabbix/ && \
-       mkdir -p /var/log/zabbix && \
-       chown -R zabbix:root /var/log/zabbix && \
-       chown --quiet -R zabbix:root /etc/zabbix && \
-       cd /tmp/ && \
-       rm -rf /tmp/zabbix && \
-       apt-get ${APT_FLAGS_COMMON} purge \
-               gcc \
-               make \
-               automake \
-               libc6-dev \
-               pkg-config \
-               libssl-dev \
-               git 1>/dev/null && \
+  ENV DEBIAN_FRONTEND=noninteractive TERM=xterm \
+      ZABBIX_HOSTNAME=ubuntu.xenial
 
 ### Dependencies Addon
-       apt-get ${APT_FLAGS_COMMON} install \
+  RUN apt-get update && \
+      apt-get install -y --no-install-recommends \
+               ca-certificates \
                curl \
                less \
                logrotate \
@@ -83,6 +19,12 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
                vim-tiny \
                wget \
                && \
+       curl https://repo.zabbix.com/zabbix-official-repo.key | apt-key add - && \
+       echo 'deb http://repo.zabbix.com/zabbix/3.4/ubuntu xenial main' >>/etc/apt/sources.list && \
+       echo 'deb-src http://repo.zabbix.com/zabbix/3.4/ubuntu xenial main' >>/etc/apt/sources.list && \
+       apt-get update && \
+       apt-get install -y --no-install-recommends \
+               zabbix-agent && \
        wget -O /usr/local/bin/MailHog  https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64 && \
        wget -O /usr/local/bin/mhsendmail https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 && \
        chmod +x /usr/local/bin/MailHog && \
@@ -106,4 +48,3 @@ MAINTAINER Dave Conroy <dave at tiredofit dot ca>
    
 ### Entrypoint Configuration
    CMD ["bash"]
-

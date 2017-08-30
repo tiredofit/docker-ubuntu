@@ -6,7 +6,7 @@ Dockerfile to build an [ubuntu](https://www.ubuntu.org/) container image.
 
 * Currently tracking Trusty (14.04), Xenial (16.04)
 * [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities
-* [zabbix-agent](https://zabbix.org) based on TRUNK compiled for individual container monitoring.
+* [zabbix-agent](https://zabbix.org) installed individual container monitoring.
 * Cron installed along with other tools (curl, less, logrotate, nano, vim) for easier management.
 
 # Authors

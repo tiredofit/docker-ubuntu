@@ -1,10 +1,10 @@
-FROM ubuntu:xenial
+FROM ubuntu:trusty
 MAINTAINER Dave Conroy <dave at tiredofit dot ca>
 
 ### Install Zabbix
   ARG S6_OVERLAY_VERSION=v1.19.1.1 
   ENV DEBIAN_FRONTEND=noninteractive TERM=xterm \
-      ZABBIX_HOSTNAME=ubuntu.xenial
+      ZABBIX_HOSTNAME=ubuntu.trusty
 
 ### Dependencies Addon
   RUN apt-get update && \

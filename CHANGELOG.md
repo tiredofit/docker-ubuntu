@@ -1,3 +1,7 @@
+## 2.4 2017-09-01 <dave at tiredofit dot ca>
+
+* Update S6 Overlay to 1.20.0.0
+
 ## 2.3 2017-08-29 <dave at tiredofit dot ca>
 
 * Used Official Zabbix Agent 3.4 instead of compiling from Trunk

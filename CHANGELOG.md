@@ -1,3 +1,7 @@
+## 2.5 2017-09-17 <dave at tiredofit dot ca>
+
+* Update Init Script Statements
+
 ## 2.4 2017-09-01 <dave at tiredofit dot ca>
 
 * Update S6 Overlay to 1.20.0.0

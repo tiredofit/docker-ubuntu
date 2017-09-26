@@ -1,3 +1,7 @@
+## 2.6 2017-09-26 <dave at tiredofit dot ca>
+
+* Increase Verbosity for Services being enabled/disabled
+
 ## 2.5 2017-09-17 <dave at tiredofit dot ca>
 
 * Update Init Script Statements

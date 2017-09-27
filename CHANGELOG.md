@@ -1,3 +1,7 @@
+## 2.6.1 2017-09-27 <dave at tiredofit dot ca>
+
+* Tamed Verbosity 
+
 ## 2.6 2017-09-26 <dave at tiredofit dot ca>
 
 * Increase Verbosity for Services being enabled/disabled

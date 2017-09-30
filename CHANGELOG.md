@@ -1,3 +1,7 @@
+## 2.6.2 2017-09-30 <dave at tiredofit dot ca>
+
+* Remove Dependency on Wget
+
 ## 2.6.1 2017-09-27 <dave at tiredofit dot ca>
 
 * Tamed Verbosity 

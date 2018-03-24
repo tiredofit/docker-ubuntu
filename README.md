@@ -1,4 +1,10 @@
-# hub.docker.com/tiredofit/ubuntu
+# hub.docker.com/r/tiredofit/ubuntu
+
+[![Build Status](https://img.shields.io/docker/build/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
+[![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/ubuntu.svg)](https://microbadger.com/images/tiredofit/ubuntu)
+[![Image Size](https://img.shields.io/microbadger/image-size/tiredofit/ubuntu.svg)](https://microbadger.com/images/tiredofit/ubuntu)
 
 # Introduction
 

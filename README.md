@@ -1,10 +1,4 @@
-# hub.docker.com/r/tiredofit/ubuntu
-
-[![Build Status](https://img.shields.io/docker/build/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
-[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
-[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
-[![Docker Layers](https://images.microbadger.com/badges/image/tiredofit/ubuntu.svg)](https://microbadger.com/images/tiredofit/ubuntu)
-[![Image Size](https://img.shields.io/microbadger/image-size/tiredofit/ubuntu.svg)](https://microbadger.com/images/tiredofit/ubuntu)
+# hub.docker.com/tiredofit/ubuntu
 
 # Introduction
 
@@ -14,6 +8,7 @@ Dockerfile to build an [ubuntu](https://www.ubuntu.org/) container image.
 * [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities
 * [zabbix-agent](https://zabbix.org) installed individual container monitoring.
 * Cron installed along with other tools (curl, less, logrotate, nano, vim) for easier management.
+* Ability to update User ID and Group ID Permissions for Development Purposes dyanmically.
 
 # Authors
 
@@ -122,6 +117,16 @@ See The [Official Zabbix Agent Documentation](https://www.zabbix.com/documentati
 | `ZABBIX_ALLOW_ROOT` | Allow running as root - Default: `1` |
 | `ZABBIX_USER` | Zabbix user to start as - Default: `zabbix` |
 
+If you enable `DEBUG_PERMISSIONS=TRUE` all the users and groups have been modified in accordance with Environmental Variables will be displayed in output.
+e.g. If you add `USER_NGINX=1000` it will reset the containers `nginx` user id from `82` to `1000` - Hint, also change the Group ID to your local development users UID & GID
+and avoid Docker permission issues when developing.
+
+| Parameter | Description |
+|-----------|-------------|
+| `USER_<USERNAME>` |  The user's UID in /etc/passwd will be modified with new UID - Default `N/A` |
+| `GROUP_<GROUPNAME>` | The group's GID in /etc/group and /etc/passwd will be modified with new GID - Default `N/A` |
+| `GROUP_ADD_<USERNAME>` | The username will be added in /etc/group after the group name defined - Default `N/A` | 
+
 
 ### Networking
 
@@ -156,6 +161,3 @@ docker exec -it (whatever your container name is e.g. ubuntu) bash
 * https://www.ubuntu.org
 * https://www.zabbix.org
 * https://github.com/just-containers/s6-overlay
-
-
-

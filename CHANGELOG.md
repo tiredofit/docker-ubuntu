@@ -1,3 +1,20 @@
+## 3.1 2018-03-25 <dave at tiredofit dot ca>
+
+* Update MailHog Test Server Startup
+
+## 3.0 2018-03-14 <lesliesit at outlook dot com>
+
+* Add 01-permissions script to support change uid & gid and add user to group:
+* USER_<USERNAME>=<aNewNumber>
+* GROUP_<GROUPNAME>=<aNewNumber>
+* GROUP_ADD_<USERNAME>=<aGroupName>
+* UID & GID in /etc/passwd & /etc/group will be modified.
+* Old 01- 02- 03- scripts renamed after the new 01-permissions as 02- 03- 04-
+
+## 2.9 2018-02-17 <dave at tiredofit dot ca>
+
+* Update Permissions via fix-attrs.d
+
 ## 2.8 2017-12-24 <dave at tiredofit dot ca>
 
 * Add custom crontab importing from /assets/cron-custom/
@@ -42,4 +59,3 @@
 * Built mechanisms to not start processes until container initialized
 * Zabbix Agent Configuration can be controlled and adjusted via Environment Variables
 * General Tidying Up
-

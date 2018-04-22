@@ -1,5 +1,6 @@
-FROM ubuntu:trusty
+FROM ubuntu:bionic
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
+
 
 ### Set Defaults
     ENV DEBUG_MODE=FALSE \
@@ -10,12 +11,11 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 ### Install Zabbix
   ARG S6_OVERLAY_VERSION=v1.21.4.0
   ENV DEBIAN_FRONTEND=noninteractive TERM=xterm \
-      ZABBIX_HOSTNAME=ubuntu.trusty
+      ZABBIX_HOSTNAME=ubuntu.bionic
 
 ### Dependencies Addon
   RUN set -x ; \
       apt-get update ; \
-      apt-get upgrade -y ; \
       apt-get install -y --no-install-recommends \
                ca-certificates \
                curl \
@@ -27,8 +27,8 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
                vim-tiny \
                ; \
        curl https://repo.zabbix.com/zabbix-official-repo.key | apt-key add - ; \
-       echo 'deb http://repo.zabbix.com/zabbix/3.4/ubuntu trusty main' >>/etc/apt/sources.list ; \
-       echo 'deb-src http://repo.zabbix.com/zabbix/3.4/ubuntu trusty main' >>/etc/apt/sources.list ; \
+       echo 'deb http://repo.zabbix.com/zabbix/3.4/ubuntu xenial main' >>/etc/apt/sources.list ; \
+       echo 'deb-src http://repo.zabbix.com/zabbix/3.4/ubuntu xenial main' >>/etc/apt/sources.list ; \
        apt-get update ; \
        apt-get install -y --no-install-recommends \
                zabbix-agent ; \
@@ -55,3 +55,4 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Add Folders
    ADD install /
+

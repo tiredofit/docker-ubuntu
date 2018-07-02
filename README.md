@@ -1,10 +1,16 @@
-# hub.docker.com/tiredofit/ubuntu
+# hub.docker.com/r/tiredofit/ubuntu
+
+[![Build Status](https://img.shields.io/docker/build/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
+[![Docker Stars](https://img.shields.io/docker/stars/tiredofit/ubuntu.svg)](https://hub.docker.com/r/tiredofit/ubuntu)
+[![Docker 
+Layers](https://images.microbadger.com/badges/image/tiredofit/ubuntu.svg)](https://microbadger.com/images/tiredofit/ubuntu)
 
 # Introduction
 
 Dockerfile to build an [ubuntu](https://www.ubuntu.org/) container image.
 
-* Currently tracking Trusty (14.04), Xenial (16.04)
+* Currently tracking Trusty (14.04), Xenial (16.04), Bionic (18.04)
 * [s6 overlay](https://github.com/just-containers/s6-overlay) enabled for PID 1 Init capabilities
 * [zabbix-agent](https://zabbix.org) installed individual container monitoring.
 * Cron installed along with other tools (curl, less, logrotate, nano, vim) for easier management.
@@ -46,7 +52,8 @@ The following image tags are available:
 
 * `14.04:latest` - Ubuntu Trusty 14.04
 * `16.04:latest` - Ubuntu Xenial 16.04
-* `latest` - Ubuntu Xenial - 16.04
+* `18.04:latest` - Ubuntu Bionic 18.04
+* `latest` - Ubuntu Xenial - 18.04
 
 
 # Quick Start
@@ -84,6 +91,7 @@ If you wish to have this send mail, set `ENABLE_SMTP=TRUE` and configure the fol
 
 | Parameter         | Description                                                    |
 |-------------------|----------------------------------------------------------------|
+| `ENABLE_SMTP_GMAIL` | Add setting to supoprt sending through Gmail SMTP - Default: `FALSE` |
 | `SMTP_HOST`      | Hostname of SMTP Server - Default: `postfix-relay`                            |
 | `SMTP_PORT`      | Port of SMTP Server - Default: `25`                            |
 | `SMTP_DOMAIN`     | HELO Domain - Default: `docker`                                   |

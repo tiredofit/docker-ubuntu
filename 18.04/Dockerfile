@@ -18,6 +18,7 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
       apt-get install -y --no-install-recommends \
                ca-certificates \
                curl \
+               gnupg \
                less \
                logrotate \
                msmtp \

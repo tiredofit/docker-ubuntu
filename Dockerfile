@@ -1,24 +1,23 @@
-FROM ubuntu:xenial
+FROM ubuntu:bionic
 LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Set Defaults
-    ENV DEBUG_MODE=FALSE \
-        ENABLE_CRON=TRUE \
-        ENABLE_SMTP=TRUE \
-        ENABLE_ZABBIX=TRUE
-
-### Install Zabbix
   ARG S6_OVERLAY_VERSION=v1.21.7.0
   ENV DEBIAN_FRONTEND=noninteractive TERM=xterm \
-      ZABBIX_HOSTNAME=ubuntu.xenial
+      DEBUG_MODE=FALSE \
+      ENABLE_CRON=TRUE \
+      ENABLE_SMTP=TRUE \
+      ENABLE_ZABBIX=TRUE \
+      TERM=xterm \
+      ZABBIX_HOSTNAME=ubuntu.bionic
 
 ### Dependencies Addon
   RUN set -x && \
       apt-get update && \
-      apt-get upgrade -y && \
       apt-get install -y --no-install-recommends \
                ca-certificates \
                curl \
+               gnupg \
                less \
                logrotate \
                msmtp \
@@ -27,8 +26,8 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
                vim-tiny \
                && \
        curl https://repo.zabbix.com/zabbix-official-repo.key | apt-key add - && \
-       echo 'deb http://repo.zabbix.com/zabbix/3.4/ubuntu xenial main' >>/etc/apt/sources.list && \
-       echo 'deb-src http://repo.zabbix.com/zabbix/3.4/ubuntu xenial main' >>/etc/apt/sources.list && \
+       echo 'deb http://repo.zabbix.com/zabbix/4.0/ubuntu bionic main' >>/etc/apt/sources.list && \
+       echo 'deb-src http://repo.zabbix.com/zabbix/4.0/ubuntu bionic main' >>/etc/apt/sources.list && \
        apt-get update && \
        apt-get install -y --no-install-recommends \
                zabbix-agent && \
@@ -39,9 +38,9 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
        useradd -r -s /bin/false -d /nonexistent mailhog && \
        apt-get autoremove -y && \
        apt-get clean -y && \
-       rm -rf /var/lib/apt/lists/* /root/.gnupg && \
+       rm -rf /var/lib/apt/lists/* /root/.gnupg /var/log/* && \
        mkdir -p /assets/cron && \
-       echo "Etc/UTC" > /etc/timezone && \
+       echo "America/Vancouver" > /etc/timezone && \
        dpkg-reconfigure -f noninteractive tzdata && \
        \
 ### S6 Installation
@@ -55,3 +54,4 @@ LABEL maintainer="Dave Conroy (dave at tiredofit dot ca)"
 
 ### Add Folders
    ADD install /
+

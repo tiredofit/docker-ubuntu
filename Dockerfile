@@ -1,4 +1,4 @@
-FROM docker.io/debian:buster
+FROM docker.io/ubuntu:20.04
 LABEL maintainer="Dave Conroy (github.com/tiredofit)"
 
 ### Set defaults
@@ -25,8 +25,8 @@ ENV FLUENTBIT_VERSION=${FLUENTBIT_VERSION:-"1.8.15"} \
     S6_GLOBAL_PATH=/command:/usr/bin:/bin:/usr/sbin:sbin:/usr/local/bin:/usr/local/sbin \
     S6_KEEP_ENV=1 \
     S6_CMD_WAIT_FOR_SERVICES_MAXTIME=0 \
-    IMAGE_NAME="tiredofit/debian" \
-    IMAGE_REPO_URL="https://github.com/tiredofit/docker-debian/"
+    IMAGE_NAME="tiredofit/ubuntu" \
+    IMAGE_REPO_URL="https://github.com/tiredofit/docker-ubuntu/"
 
 
 RUN debArch=$(dpkg --print-architecture) && \
@@ -35,7 +35,7 @@ RUN debArch=$(dpkg --print-architecture) && \
 		*) : ;; \
 	esac; \
     set -ex && \
-    if [ $(cat /etc/os-release |grep "VERSION=" | awk 'NR>1{print $1}' RS='(' FS=')') != "jessie" ] ; then zstd=zstd; fi ; \
+    if [ $(cat /etc/os-release |grep "VERSION=" | awk 'NR>1{print "$1"}' RS='(' FS=')') != "jessie" ] ; then zstd=zstd; fi ; \
     apt-get update && \
     apt-get upgrade -y && \
     ZABBIX_BUILD_DEPS=' \

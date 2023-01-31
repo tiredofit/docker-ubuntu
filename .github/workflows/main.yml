@@ -113,7 +113,7 @@ jobs:
           sed -i "s|FROM docker.io/ubuntu.*|FROM docker.io/ubuntu:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -222,7 +222,7 @@ jobs:
           sed -i "s|FROM docker.io/debian:.*|FROM docker.io/debian:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -331,7 +331,7 @@ jobs:
           sed -i "s|FROM docker.io/debian:.*|FROM docker.io/debian:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -440,7 +440,7 @@ jobs:
           sed -i "s|FROM docker.io/debian:.*|FROM docker.io/debian:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -551,7 +551,7 @@ jobs:
           sed -i "s|FROM docker.io/ubuntu.*|FROM docker.io/ubuntu:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -660,7 +660,7 @@ jobs:
           sed -i "s|FROM docker.io/debian:.*|FROM docker.io/debian:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -769,7 +769,7 @@ jobs:
           sed -i "s|FROM docker.io/debian:.*|FROM docker.io/debian:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
@@ -878,7 +878,7 @@ jobs:
           sed -i "s|FROM docker.io/debian:.*|FROM docker.io/debian:${RELEASE}|g" Dockerfile
 
       - name: Build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
